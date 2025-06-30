@@ -1,0 +1,32 @@
+<%- include('../partials/head') %>
+</head>
+<body class="bg-gray-100">
+<%- include('../partials/header') %>
+  <main class="container mx-auto bg-white shadow-lg rounded-lg p-8 mt-10 max-w-xl">
+    <h2 class="text-3xl text-blue-500 font-bold text-center mb-6">
+      Hey Host! Here are your favourite homes:
+    </h2>
+    <ul class="flex  gap-6 justify-center">
+      <% registeredHomes.forEach(home => { %>
+      <li class="p-4 w-72 bg-white border border-gray-200 rounded-2xl shadow-md hover:shadow-xl hover:-translate-y-1 transition-transform duration-300">
+          <% Object.entries(home).forEach(([key, value]) => { %>
+            <% if (typeof value === 'string' && value.match(/\.(jpeg|jpg|gif|png|webp)$/)) { %>
+              <img src="<%= value %>" alt="<%= key %>" class="w-32 h-32 object-cover rounded mb-2" />
+            <% } else { %>
+              <p class="text-sm text-gray-700"><strong><%= key %>:</strong> <%= value %></p>
+            <% } %>
+          <% }) %>
+          <button class="bg-blue-300 p-2 rounded-2xl border">Edit</button>
+          <button class="bg-red-300 p-2 rounded-2xl border">Delete</button>
+        </li>
+      <% }) %>
+      
+    </ul>
+    <!-- <div class="mt-6 text-center">
+      <a href="/host/add-home" class="inline-block px-6 py-2 text-white bg-blue-500 rounded-lg shadow hover:bg-blue-600">
+        Add a New Home
+      </a>
+    </div> -->
+  </main>
+</body>
+</html>
